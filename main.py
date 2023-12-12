@@ -5,6 +5,7 @@ from streamlit_chat import message
 import requests
 
 st.title('Bewässerungsplan')
+st.info('This is a purely informational message', icon="ℹ️")
 
 DATE_COLUMN = 'date/time'
 DATA_URL = ('https://s3-us-west-2.amazonaws.com/streamlit-demo-data/uber-raw-data-sep14.csv.gz')
