@@ -30,7 +30,8 @@ st.bar_chart(hist_values)
 
 with st.chat_message("user"):
     st.write("Möchten Sie einen neuen Bewässerungsplan erstellen lassen?")
+
 prompt = st.chat_input("Say something")
 if prompt:
-            st.write(f"User has sent the following prompt: {prompt}")
+    st.write(f"User has sent the following prompt: {prompt}")
             
