@@ -3,6 +3,8 @@ import pandas as pd
 import numpy as np
 from streamlit_chat import message
 import requests
+message("My message") 
+message("Hello bot!", is_user=True)  # align's the message to the right
 
 st.title('Bewässerungsplan')
 
@@ -34,8 +36,6 @@ with st.chat_message("user"):
     st.write("Möchten Sie einen neuen Bewässerungsplan erstellen lassen?")
 
 
-message("My message") 
-message("Hello bot!", is_user=True)  # align's the message to the right
 
 
 
