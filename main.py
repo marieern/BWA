@@ -1,70 +1,36 @@
-import * as echarts from 'echarts';
+import streamlit as st
+import pandas as pd
+import numpy as np
 
-var chartDom = document.getElementById('main');
-var myChart = echarts.init(chartDom);
-var option;
+st.title('Uber pickups in NYC')
 
-option = {
-  title: {
-    text: 'Stacked Line'
-  },
-  tooltip: {
-    trigger: 'axis'
-  },
-  legend: {
-    data: ['Email', 'Union Ads', 'Video Ads', 'Direct', 'Search Engine']
-  },
-  grid: {
-    left: '3%',
-    right: '4%',
-    bottom: '3%',
-    containLabel: true
-  },
-  toolbox: {
-    feature: {
-      saveAsImage: {}
-    }
-  },
-  xAxis: {
-    type: 'category',
-    boundaryGap: false,
-    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-  },
-  yAxis: {
-    type: 'value'
-  },
-  series: [
-    {
-      name: 'Email',
-      type: 'line',
-      stack: 'Total',
-      data: [120, 132, 101, 134, 90, 230, 210]
-    },
-    {
-      name: 'Union Ads',
-      type: 'line',
-      stack: 'Total',
-      data: [220, 182, 191, 234, 290, 330, 310]
-    },
-    {
-      name: 'Video Ads',
-      type: 'line',
-      stack: 'Total',
-      data: [150, 232, 201, 154, 190, 330, 410]
-    },
-    {
-      name: 'Direct',
-      type: 'line',
-      stack: 'Total',
-      data: [320, 332, 301, 334, 390, 330, 320]
-    },
-    {
-      name: 'Search Engine',
-      type: 'line',
-      stack: 'Total',
-      data: [820, 932, 901, 934, 1290, 1330, 1320]
-    }
-  ]
-};
+DATE_COLUMN = 'date/time'
+DATA_URL = ('https://s3-us-west-2.amazonaws.com/'
+            'streamlit-demo-data/uber-raw-data-sep14.csv.gz')
 
-option && myChart.setOption(option);
+@st.cache_data
+def load_data(nrows):
+    data = pd.read_csv(DATA_URL, nrows=nrows)
+    lowercase = lambda x: str(x).lower()
+    data.rename(lowercase, axis='columns', inplace=True)
+    data[DATE_COLUMN] = pd.to_datetime(data[DATE_COLUMN])
+    return data
+
+data_load_state = st.text('Loading data...')
+data = load_data(10000)
+data_load_state.text("Done! (using st.cache_data)")
+
+if st.checkbox('Show raw data'):
+    st.subheader('Raw data')
+    st.write(data)
+
+st.subheader('Number of pickups by hour')
+hist_values = np.histogram(data[DATE_COLUMN].dt.hour, bins=24, range=(0,24))[0]
+st.bar_chart(hist_values)
+
+# Some number in the range 0-23
+hour_to_filter = st.slider('hour', 0, 23, 17)
+filtered_data = data[data[DATE_COLUMN].dt.hour == hour_to_filter]
+
+st.subheader('Map of all pickups at %s:00' % hour_to_filter)
+st.map(filtered_data)
