@@ -7,8 +7,7 @@ import requests
 st.title('Bewässerungsplan')
 
 DATE_COLUMN = 'date/time'
-DATA_URL = ('https://s3-us-west-2.amazonaws.com/'
-            'streamlit-demo-data/uber-raw-data-sep14.csv.gz')
+DATA_URL = ('https://github.com/marieern/BWA/blob/main/Daten/air_temperature_mean.csv')
 
 @st.cache_data
 def load_data(nrows):
