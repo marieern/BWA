@@ -27,3 +27,6 @@ if st.checkbox('Show raw data'):
 st.subheader('Bodenfeuchte')
 hist_values = np.histogram(data[DATE_COLUMN].dt.hour, bins=24, range=(0,24))[0]
 st.bar_chart(hist_values)
+
+with st.chat_message("user"):
+    st.write("Hello 👋")
