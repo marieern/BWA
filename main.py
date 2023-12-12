@@ -3,8 +3,6 @@ import pandas as pd
 import numpy as np
 from streamlit_chat import message
 import requests
-message("My message") 
-message("Hello bot!", is_user=True)  # align's the message to the right
 
 st.title('Bewässerungsplan')
 
@@ -33,8 +31,8 @@ hist_values = np.histogram(data[DATE_COLUMN].dt.hour, bins=24, range=(0,24))[0]
 st.bar_chart(hist_values)
 
 option = st.selectbox(
-    'Möchten Sie einen neuen Bewässerungsplan erstellen lassen??',
-    ('Ja', 'Nein'))
+    'Möchten Sie einen neuen Bewässerungsplan erstellen lassen?',
+    ('', 'Ja', 'Nein'))
 
 st.write('You selected:', option)
 
