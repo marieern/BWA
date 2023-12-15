@@ -6,4 +6,5 @@ for col in st.columns(8):
         open_modal = st.button(label='button', key='msg')
         if open_modal:
             with modal.container():
-                st.markdown('testtesttesttesttesttesttesttest')
+                st.markdown('Es gibt Abweichungen der aktuellen Bodenfeuchte von der Oprimalen. Es wird geraten einen neuen Bewässerungsplan anhand der aktuellen Daten zu erstellen. Möchten Sie dies tun?')
+                st.button(label='ja', key='ja')
