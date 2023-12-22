@@ -65,11 +65,11 @@ def show_moisture_values(simulation_days, moisture_values):
 
     selection = altair_component(make_altair_scatterplot(df))
 
-    if "_vgsid_" in selection:
+   # if "_vgsid_" in selection:
         # the ids start at 1
-        st.write(df.iloc[[selection["_vgsid_"][0] - 1]])
-    else:
-        st.info("Hover over the chart above to see details about the Penguin here.")
+    st.write(df.iloc[[selection["_vgsid_"][0] - 1]])
+   # else:
+    #    st.info("Hover over the chart above to see details about the Penguin here.")
 
 def main():
     #dataReader = read_data.DataReader()
