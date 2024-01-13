@@ -1,4 +1,4 @@
-import * from 'echarts' as echarts 
+import echarts as echarts 
 
 chartDom = document.getElementById('main')
 myChart = echarts.init(chartDom)
