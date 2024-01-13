@@ -38,7 +38,9 @@ def make_altair_scatterplot(moisture_values):
 
 def show_moisture_values(simulation_days, moisture_values):
     print(simulation_days)
-    st.title("Bodenfeuchte")
+    # Use the full page instead of a narrow central column
+    st.set_page_config(layout="wide")
+
     values = {}
 
     string = '['
@@ -53,8 +55,7 @@ def show_moisture_values(simulation_days, moisture_values):
     df = pd.DataFrame(eval(string))
     print(type(df))
     
-    # Use the full page instead of a narrow central column
-    st.set_page_config(layout="wide")
+    
     col1, col2 = st.columns((1, 2))
   
     col1.header("Bewässerungsplan")
