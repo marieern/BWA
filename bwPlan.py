@@ -2,6 +2,7 @@ import csv
 import requests
 from datetime import datetime
 import plost
+import streamlit as st
 
 def load_bodenfeuchte(region):
     """Methode zum Laden der Daten der aktuellen Bodenfeuchte in nFK
