@@ -56,7 +56,7 @@ def show_moisture_values(simulation_days, moisture_values):
     print(type(df))
     
     
-    col1, col2 = st.container((1, 2))
+    col1, col2 = st.container()
   
     col1.header("Bewässerungsplan")
     col1.write(df)
