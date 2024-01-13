@@ -132,8 +132,10 @@ def water_addition_to_target_range(current_soil_moisture_percent, nFK, lower_ran
     updated_soil_moisture_percent = (updated_soil_moisture_mm / nFK) * 100
     print("updated_soil_moisture_percent: ", updated_soil_moisture_percent)
     return water_needed_mm, updated_soil_moisture_percent
+    
 
 def plost_soil_moisture(irrigation):
+    st.write(irrigation)
     plost.line_chart(
       irrigation,
       x='Tag',
